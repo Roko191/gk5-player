@@ -22,6 +22,7 @@ const App = (() => {
       { onDropSuccess: handleDropSuccess, onDropFail: () => {} }
     );
 
+    BeatEngine.init({ bg: document.body, playerGlow });
     playerWrap.addEventListener('click', handlePlayerClick);
     setState('closed');
   }
@@ -66,7 +67,7 @@ const App = (() => {
     }, 80);
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    setTimeout(() => AudioSystem.play(handleAudioEnded), 200);
+    setTimeout(() => { AudioSystem.play(handleAudioEnded); BeatEngine.start(AudioSystem.getBpm()); }, 200);
   }
 
   function handlePlayerClick() {
@@ -90,6 +91,7 @@ const App = (() => {
   }
 
   function handleAudioEnded() {
+    BeatEngine.stop();
     progressWrap.classList.remove('visible');
     setTimeout(() => {
       AudioSystem.playSFX('open', 0.85);

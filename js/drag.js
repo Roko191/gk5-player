@@ -2,7 +2,7 @@ const DragSystem = (() => {
 
   let cdWrap, playerWrap, playerGlow;
   let isDragging = false;
-  let startPos   = { x: 0, y: 10 };
+  let startPos   = { x: 0, y: 0 };
   let currentPos = { x: 0, y: 0 };
   let origin     = { x: 0, y: 0 };
   let translate  = { x: 0, y: 0 };
@@ -113,18 +113,7 @@ const DragSystem = (() => {
 
   function setGlowIntensity(intensity) {
     intensity = clamp(intensity, 0, 1);
-    if (intensity <= 0) {
-      playerGlow.style.boxShadow = '';
-      return;
-    }
-    const a1 = 0.10 + intensity * 0.40;
-    const a2 = 0.06 + intensity * 0.25;
-    const s1 = 6  + intensity * 18;
-    const s2 = 15 + intensity * 35;
-    playerGlow.style.boxShadow = [
-      `0 0 ${s1}px ${s1/3}px rgba(0,180,255,${a1.toFixed(2)})`,
-      `0 0 ${s2}px ${s2/3}px rgba(0,120,255,${a2.toFixed(2)})`,
-    ].join(', ');
+    playerGlow.style.opacity = intensity.toFixed(3);
   }
 
   function applyMagnet() {

@@ -1,11 +1,11 @@
 const AudioSystem = (() => {
 
   const TRACKS = [
-    { src: 'assets/audio/songs/track_01.mp3' },
-    { src: 'assets/audio/songs/track_06.mp3' },
-    { src: 'assets/audio/songs/track_07.mp3' },
-    { src: 'assets/audio/songs/track_10.mp3' },
-    { src: 'assets/audio/songs/track_12.mp3' },
+    { src: 'assets/audio/songs/track_01.mp3', bpm: 85 },
+    { src: 'assets/audio/songs/track_06.mp3', bpm: 118 },
+    { src: 'assets/audio/songs/track_07.mp3', bpm: 138 },
+    { src: 'assets/audio/songs/track_10.mp3', bpm: 91 },
+    { src: 'assets/audio/songs/track_12.mp3', bpm: 110 },
   ];
 
   const SFX = {
@@ -85,6 +85,6 @@ const AudioSystem = (() => {
     pickTrack();
   }
 
-  return { init, play, stop, playSFX };
+  return { init, play, stop, playSFX, getBpm: () => currentTrack?.bpm || 120 };
 
 })();
